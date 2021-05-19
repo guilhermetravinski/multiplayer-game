@@ -45,6 +45,10 @@
                 keyboardListener.subscribe((command) => {
                     socket.emit('move-player', command)
                 })
+
+                socket.on('disconnect', () => {
+                    keyboardListener.unsubscribeAll()
+                })
             })
 
             socket.on('add-player', (command) => {
