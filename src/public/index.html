@@ -82,6 +82,9 @@
             import createGame from './game.js'
             import createKeyboardListener from './keyboard-listener.js'
             import renderScreen from './render-screen.js'
+
+            const collectFruitAudio = new Audio('collect.mp3')
+            const collect100FruitAudio = new Audio('100-collect.mp3')
                   
             const game = createGame()
             const keyboardListener = createKeyboardListener(document)
@@ -143,6 +146,19 @@
             socket.on('remove-fruit', (command) => {
                 //console.log(`> Reciving ${command.type} -> ${command.playerId}`)
                 game.removeFruit(command)
+            })
+
+            socket.on('collect-sound', () => {
+                collectFruitAudio.pause()
+                collectFruitAudio.currentTime = 0
+                collectFruitAudio.play()
+            })
+
+            socket.on('collect100-sound', () => {
+                collectFruitAudio.pause()
+                collect100FruitAudio.pause()
+                collect100FruitAudio.currentTime = 0
+                collect100FruitAudio.play()
             })
 
         </script>

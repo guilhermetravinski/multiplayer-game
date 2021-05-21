@@ -139,6 +139,10 @@ export default function createGame() {
                 //console.log(`COLLISION between ${playerId} and ${fruitId}`)
                 removeFruit({ fruitId: fruitId })
                 player.score += 1
+                const soundType = (player.score % 100) === 0  ? 'collect100-sound' : 'collect-sound'
+                notifyAll({
+                    type: soundType
+                })
             }  
         }
     }
