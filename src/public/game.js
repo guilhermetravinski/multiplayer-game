@@ -3,15 +3,15 @@ export default function createGame() {
         players: {},
         fruits: {},
         screen: {
-            width: 10,
-            height: 10
+            width: 25,
+            height: 25
         }
     }
 
     const observers = []
 
     function start() {
-        const frequency = 2000
+        const frequency = 4000
 
         setInterval(addFruit, frequency)
     }
@@ -34,17 +34,20 @@ export default function createGame() {
         const playerId = command.playerId
         const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random() * state.screen.width)
         const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random() * state.screen.height)
+        const score = 0
 
         state.players[playerId] = {
             x: playerX,
-            y: playerY
+            y: playerY,
+            score
         }
 
         notifyAll({
             type: 'add-player',
             playerId: playerId,
             playerX: playerX,
-            playerY: playerY
+            playerY: playerY,
+            score
         })
     }
 
@@ -130,11 +133,12 @@ export default function createGame() {
         
         for (const fruitId in state.fruits) {
             const fruit = state.fruits[fruitId]
-            console.log(`Checking ${playerId} and ${fruitId}`)
+            //console.log(`Checking ${playerId} and ${fruitId}`)
 
             if (player.x === fruit.x && player.y === fruit.y) {
-                console.log(`COLLISION between ${playerId} and ${fruitId}`)
+                //console.log(`COLLISION between ${playerId} and ${fruitId}`)
                 removeFruit({ fruitId: fruitId })
+                player.score += 1
             }  
         }
     }
