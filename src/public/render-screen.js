@@ -68,8 +68,8 @@ function updateScoreTable(scoreTable, game, currentPlayerId) {
     scoreTableInnerHTML = topScorePlayers.reduce((stringFormed, player) => {
         return stringFormed + `
             <tr ${player.playerId === currentPlayerId ? 'class="current-player"' : ''}>
-                <td>${player.playerId}</td>
-                <td>${player.score}</td>
+                <td class="socket-id">${player.playerId}</td>
+                <td class="score-value">${player.score}</td>
             </tr>
         `
     }, scoreTableInnerHTML)
