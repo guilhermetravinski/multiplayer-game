@@ -98,21 +98,29 @@ export default function createGame() {
             ArrowUp(player) {
                 if (player.y - 1 >= 0) {
                     player.y = player.y - 1
+                } else {
+                    player.y = state.screen.height - 1
                 }
             },
             ArrowRight(player) {
                 if (player.x + 1 < state.screen.width) {
                     player.x = player.x + 1
+                } else {
+                    player.x = 0
                 }
             },
             ArrowDown(player) {
                 if (player.y + 1 < state.screen.height) {
                     player.y = player.y + 1
+                } else {
+                    player.y = 0
                 }
             },
             ArrowLeft(player) {
                 if (player.x - 1 >= 0) {
                     player.x = player.x - 1
+                } else {
+                    player.x = state.screen.width - 1
                 }
             }
         }
