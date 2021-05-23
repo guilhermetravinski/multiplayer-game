@@ -1,0 +1,6 @@
+ports:
+  - port: 3000
+    onOpen: open-preview
+tasks:
+  - before: cd src
+    command: nvm install 14.16.1 && npm install && npm start
