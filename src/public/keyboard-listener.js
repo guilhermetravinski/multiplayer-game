@@ -27,13 +27,22 @@ export default function createKeyboardListener(document) {
     function handleKeydown(event) {
         const keyPressed = event.key
 
-        const command = {
-            type: 'move-player',
-            playerId: state.playerId,
-            keyPressed
+        const acceptedMoves = {
+            ArrowUp: 1,
+            ArrowRight: 1,
+            ArrowDown: 1,
+            ArrowLeft: 1
         }
 
-        notifyAll(command)
+        if(acceptedMoves[keyPressed]) {
+            const command = {
+                type: 'move-player',
+                playerId: state.playerId,
+                keyPressed
+            }
+
+            notifyAll(command)
+        }
     }
 
     return {
